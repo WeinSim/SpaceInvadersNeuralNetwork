@@ -1,4 +1,4 @@
-class Bias {
+class Bias { //rather unimportant
   float value;
   
   Bias(float tempV) {

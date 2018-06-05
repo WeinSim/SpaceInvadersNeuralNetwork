@@ -7,7 +7,7 @@ class Enemy {
   
   Bullet b = new Bullet(0, 0, 0, false, index);
   
-  Enemy(int tempX, int tempY, int tempI) {
+  Enemy(int tempX, int tempY, int tempI) {  //again some values
     x = tempX;
     y = tempY;
     dir = 0;
@@ -15,7 +15,7 @@ class Enemy {
     index = tempI;
   }
   
-  void move() {
+  void move() {  //moving left and right
     if (dir == 0) {
       x += 5;
     } else {
@@ -23,7 +23,7 @@ class Enemy {
     }
   }
   
-  void turn() {
+  void turn() {  //moving downwards when it's supposed to do so
     dir = (dir+1)%2;
     y += 20;
     move();
@@ -31,15 +31,15 @@ class Enemy {
   
   void bullet() {
     if (!b.active) {
-      if (random(10)<0.002) {  //shoot once every 100 frames(=3.3333333sec) (all)
+      if (random(10)<0.002) {  //shoot once every 100 frames(=3.3333333sec)
         b = new Bullet(x, y+20, 5, true, index);
       }
     } else {
-      b.move();
+      b.move();  //move the bullet
     }
   }
   
-  void show() {
+  void show() {  //displaying on screen
     noStroke();
     fill(255, 255, 255, 20);
     rect(x, y, 20, 20);

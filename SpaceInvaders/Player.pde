@@ -11,7 +11,7 @@ class Player {
   float inputs [] = new float [258];
   int index;
   
-  Protection pro [] = new Protection [4];
+  Protection pro [] = new Protection [4];  //each player spawns protections. enemies, a bullet and a neural network
   Enemy enemies [] = new Enemy [50];
   Bullet b = new Bullet(0, 0, 0, false, index);
   NeuralNetwork nn = new NeuralNetwork();
@@ -30,7 +30,7 @@ class Player {
     
     for (int a=0; a<50; a++) {
       if (a<4) {
-        pro[a] = new Protection(int((a-1.5)*250), -80);
+        pro[a] = new Protection(int((a-1.5)*250), -80);  //assigning coordinates to protections and enemies
       }
       enemies[a] = new Enemy(int((a%10)-4.5)*50, floor(a/10)*50-640, index);
     }
@@ -39,10 +39,10 @@ class Player {
   void play() {
     turn = false;
     for (int b=0; b<enemies.length; b++) {
-      if (abs(enemies[b].x) >= width/2-30) {
+      if (abs(enemies[b].x) >= width/2-30) {  //eventually the enemies need to turn
         turn = true;
       }
-      enemies[b].bullet();
+      enemies[b].bullet();  //their bullets are updated
     }
     if (turn) {
       for (int c=0; c<enemies.length; c++) {
@@ -50,8 +50,8 @@ class Player {
       }
     }
     
-    for (int f=0; f<50; f++) {
-      inputs[f*5] = int(enemies[f].alive);
+    for (int f=0; f<50; f++) {  //all of the inputs for the neural network
+      inputs[f*5] = int(enemies[f].alive);                             //Its late at night now (in germany) and I'll stop now. I will continue with this right after school tomorrow
       inputs[f*5+1] = enemies[f].x/720+0.5;
       inputs[f*5+2] = enemies[f].y/680;
       inputs[f*5+3] = enemies[f].b.x/720+0.5;
